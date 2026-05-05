@@ -20,7 +20,7 @@ async function abrirWompi(payload) {
 
   const amountInCents = Math.round(Number(payload.totales.total) * 100);
   const reference = payload.orden;
-  const currency = 'USD';
+  const currency = 'COP';
 
   // Pedir firma de integridad al backend
   let signature;
@@ -67,10 +67,10 @@ function parsePrice(cop) {
   return Number(String(cop).replace(/\./g, ''));
 }
 
-function formatUSD(n) {
-  return new Intl.NumberFormat('en-US', {
+function formatCOP(n) {
+  return new Intl.NumberFormat('es-CO', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'COP',
     maximumFractionDigits: 0,
   }).format(n || 0);
 }
@@ -156,7 +156,7 @@ function tarjetaServicio(s, tipo) {
     <label class="servicio-card${destacado}" data-servicio="${e(s.id)}" data-tipo="${tipo}">
       <input type="${inputType}" name="${inputName}" value="${e(s.id)}" />
       <span class="servicio-card__badge">${e(s.badge)}</span>
-      <span class="servicio-card__precio">${formatUSD(parsePrice(s.precioUSD))}</span>
+      <span class="servicio-card__precio">${formatCOP(parsePrice(s.precioCOP))}</span>
       <span class="servicio-card__nombre">${e(s.nombre)}</span>
       <span class="servicio-card__desc">${e(s.idealPara)}</span>
       <span class="servicio-card__check" aria-hidden="true">
@@ -206,7 +206,7 @@ function togglePareja() {
 function calcularTotal() {
   const priceOf = (id) => {
     const s = servicios.find((x) => x.id === id);
-    return s ? parsePrice(s.precioUSD) : 0;
+    return s ? parsePrice(s.precioCOP) : 0;
   };
   let subtotal = 0;
   if (state.principal) subtotal += priceOf(state.principal);
@@ -231,26 +231,26 @@ function recalcular() {
     const items = [];
     if (state.principal) {
       const s = servicios.find((x) => x.id === state.principal);
-      if (s) items.push({ nombre: s.nombre, precio: parsePrice(s.precioUSD) });
+      if (s) items.push({ nombre: s.nombre, precio: parsePrice(s.precioCOP) });
     }
     state.addons.forEach((id) => {
       const s = servicios.find((x) => x.id === id);
-      if (s) items.push({ nombre: s.nombre, precio: parsePrice(s.precioUSD) });
+      if (s) items.push({ nombre: s.nombre, precio: parsePrice(s.precioCOP) });
     });
     if (items.length === 0) {
       resumen.innerHTML = '<li class="resumen__vacio">Aún no has seleccionado servicios.</li>';
     } else {
       resumen.innerHTML = items.map((it) => `
-        <li><span>${e(it.nombre)}</span><span>${formatUSD(it.precio)}</span></li>
+        <li><span>${e(it.nombre)}</span><span>${formatCOP(it.precio)}</span></li>
       `).join('');
     }
   }
   const set = (sel, val) => { const el = document.querySelector(sel); if (el) el.textContent = val; };
-  set('[data-total="subtotal"]', formatUSD(subtotal));
-  set('[data-total="descuento"]', `-${formatUSD(descuento)}`);
+  set('[data-total="subtotal"]', formatCOP(subtotal));
+  set('[data-total="descuento"]', `-${formatCOP(descuento)}`);
   set('[data-total="descuento-pct"]', pct ? `(${Math.round(pct * 100)}%)` : '');
-  set('[data-total="total"]', formatUSD(total));
-  set('[data-total="total-mobile"]', formatUSD(total));
+  set('[data-total="total"]', formatCOP(total));
+  set('[data-total="total-mobile"]', formatCOP(total));
 
   const descRow = document.querySelector('[data-total-row="descuento"]');
   if (descRow) descRow.hidden = descuento === 0;
