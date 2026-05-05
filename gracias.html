@@ -1,0 +1,65 @@
+﻿<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1A1730" />
+    <title>¡Gracias! | Mi Carta Astral Hoy</title>
+    <meta name="description" content="Confirmación de tu reserva en Mi Carta Astral Hoy." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" />
+
+    <meta name="calendly-url" content="https://calendly.com/lp-mcah1/carta-astral" />
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <script type="module" src="/src/js/gracias-entry.js"></script>
+  </head>
+  <body class="reservar-page">
+    <main class="gracias">
+      <div class="container gracias__wrap">
+        <div class="gracias__card">
+          <div class="gracias__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M7 12l3.5 3.5L17 9" />
+            </svg>
+          </div>
+          <span class="eyebrow">Resumen de tu reserva</span>
+          <h1>Gracias, <span data-nombre>alma estelar</span>.</h1>
+          <p class="gracias__lead">
+            Estamos validando tu pago y preparando el correo para
+            <strong data-email>tu bandeja de entrada</strong>.
+          </p>
+          <p class="gracias__meta">
+            Número de pedido: <strong data-orden>—</strong>
+          </p>
+
+          <div class="gracias__servicios" data-servicios-block hidden>
+            <h2 class="gracias__servicios-title">Servicios contratados</h2>
+            <ul class="gracias__servicios-lista" data-servicios-lista></ul>
+            <dl class="resumen__totales">
+              <div><dt>Subtotal</dt><dd data-g-subtotal></dd></div>
+              <div data-g-descuento-row hidden><dt>Descuento</dt><dd data-g-descuento></dd></div>
+              <div class="resumen__total"><dt>Total</dt><dd data-g-total></dd></div>
+            </dl>
+          </div>
+
+          <div class="gracias__status" data-status hidden></div>
+
+          <section class="card reservar__step gracias__calendly" data-calendly-block hidden>
+            <header class="reservar__step-head">
+              <div><h2>Agenda tu cita</h2></div>
+            </header>
+            <div class="reservar__calendly-embed" data-calendly-embed></div>
+          </section>
+
+          <a class="btn btn--primary" href="/">Volver al inicio</a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

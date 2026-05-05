@@ -1,0 +1,70 @@
+/* Tokens de diseno: paleta extraida de Paleta.PNG + tipografia + spacing + curvas.
+   Todas las reglas de la landing leen de aqui para mantener coherencia. */
+:root {
+  /* Base - Confianza */
+  --c-white: #FFFFFF;
+  --c-lavender: #F4F2FA;
+  --c-night: #1A1730;
+  --c-indigo-gray: #5C5780;
+
+  /* CTA - Conversion */
+  --c-green: #2D8C5E;          /* boton principal reserva */
+  --c-green-deep: #256d49;
+  --c-blue: #3A5FD9;            /* CTA secundario / links */
+  --c-gold: #C9A020;            /* urgencia suave, badges */
+  --c-red: #882E24;             /* escasez extrema, uso minimo */
+
+  /* Ambiente - Identidad */
+  --c-neptune: #7B5EA7;
+  --c-indigo-pale: #D6D2EC;
+  --c-teal: #1A9A7A;            /* checks / exito */
+  --c-card-violet: #EAE7F5;
+
+  /* Superficies semanticas */
+  --bg-page: var(--c-white);
+  --bg-alt: var(--c-lavender);
+  --bg-card: var(--c-white);
+  --bg-testimonial: var(--c-card-violet);
+  --text-primary: var(--c-night);
+  --text-secondary: var(--c-indigo-gray);
+  --text-on-dark: var(--c-lavender);
+  --border-soft: var(--c-indigo-pale);
+
+  /* Tipografia */
+  --font-display: 'Fraunces', 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+
+  /* Escala tipografica fluida */
+  --fs-hero: clamp(2.4rem, 5.2vw, 4.5rem);
+  --fs-h2: clamp(1.9rem, 3.4vw, 2.8rem);
+  --fs-h3: clamp(1.2rem, 1.8vw, 1.45rem);
+  --fs-lead: clamp(1.05rem, 1.4vw, 1.2rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+
+  /* Espaciado */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4.5rem;
+  --sp-9: 6rem;
+
+  /* Radios, sombras, transiciones */
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 6px 20px rgba(26, 23, 48, 0.06);
+  --shadow-card: 0 18px 44px -16px rgba(26, 23, 48, 0.18), 0 2px 6px rgba(26, 23, 48, 0.05);
+  --shadow-lift: 0 30px 60px -24px rgba(26, 23, 48, 0.35);
+
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0.05, 0.36, 1);
+
+  --container: 1180px;
+}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap pendiente hasta publicar dominio final.
+# TODO: Sitemap: https://{{DOMINIO}}/sitemap.xml

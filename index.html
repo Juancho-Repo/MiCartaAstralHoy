@@ -1,0 +1,270 @@
+﻿<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1A1730" />
+    <style>
+      html[data-page-loading="true"] body {
+        display: none !important;
+      }
+    </style>
+    <script>
+      document.documentElement.setAttribute('data-page-loading', 'true');
+      const revealPage = () => document.documentElement.removeAttribute('data-page-loading');
+      window.addEventListener('load', revealPage, { once: true });
+      setTimeout(revealPage, 5000);
+    </script>
+    <noscript>
+      <style>
+        body {
+          display: block !important;
+        }
+      </style>
+    </noscript>
+
+    <!-- SEO básico -->
+    <title>Mi Carta Astral Hoy | Lectura personalizada de tu carta natal</title>
+    <meta name="description" content="Lecturas personalizadas de carta astral, cartografía, sinastría, retorno solar y consultas 1 a 1. Entrega 100% digital para tomar decisiones con mayor claridad." />
+    <meta name="keywords" content="carta astral, astrología personalizada, lectura carta natal, sinastría, cartografía astral, retorno solar, consulta astrológica, tránsitos" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Mi Carta Astral Hoy" />
+
+    <!-- TODO: reemplazar {{DOMINIO}} y {{OG_IMAGE}} con los valores reales antes de publicar -->
+    <link rel="canonical" href="https://{{DOMINIO}}/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://{{DOMINIO}}/" />
+    <meta property="og:title" content="Mi Carta Astral Hoy | Lectura personalizada de tu carta natal" />
+    <meta property="og:description" content="Carta natal, sinastría, cartografía astral y retorno solar. Lectura 100% digital y personalizada." />
+    <meta property="og:image" content="https://{{DOMINIO}}/favicon.svg" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content="Mi Carta Astral Hoy" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mi Carta Astral Hoy" />
+    <meta name="twitter:description" content="Lectura personalizada de tu carta natal, en formato digital." />
+    <meta name="twitter:image" content="https://{{DOMINIO}}/favicon.svg" />
+
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
+
+    <!-- Fuentes: display, body y símbolos astrológicos para la carta animada del hero. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Noto+Sans+Symbols+2&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Noto+Sans+Symbols+2&display=swap" />
+
+    <!-- Schema.org Organization (negocio digital, sin dirección física) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Mi Carta Astral Hoy",
+      "url": "https://{{DOMINIO}}/",
+      "logo": "https://{{DOMINIO}}/favicon.svg",
+      "description": "Lecturas astrológicas personalizadas en formato digital: carta natal, cartografía, sinastría, retorno solar y consultas 1 a 1.",
+      "email": "mailto:LP.MCAH1@gmail.com",
+      "areaServed": "Global",
+      "sameAs": []
+    }
+    </script>
+
+    <script type="module" src="/src/main.js"></script>
+  </head>
+
+  <body>
+    <!-- Canvas del cosmos: estrellas y mini sistemas solares animados en fondo -->
+    <canvas id="cosmos" aria-hidden="true"></canvas>
+    <!-- ==================== NAVBAR ==================== -->
+    <header class="nav" role="banner">
+      <div class="container nav__inner">
+        <a class="nav__brand" href="#top" aria-label="Mi Carta Astral Hoy - inicio">
+          <img src="/favicon.svg" alt="" width="32" height="32" aria-hidden="true" />
+          <span>Mi Carta Astral Hoy</span>
+        </a>
+
+        <nav class="nav__links" aria-label="Principal">
+          <a href="#servicios">Servicios</a>
+          <a href="#testimonios">Testimonios</a>
+          <a href="#faq">FAQ</a>
+          <a class="btn btn--primary btn--shimmer" href="/reservar.html" data-pendiente="true">Reservar</a>
+        </nav>
+
+        <button class="nav__toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-drawer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+      </div>
+
+    </header>
+
+    <!-- Backdrop y drawer fuera del header para evitar conflicto con backdrop-filter stacking context -->
+    <div class="nav__backdrop" aria-hidden="true"></div>
+    <aside id="nav-drawer" class="nav__drawer" aria-label="Menú de navegación">
+      <a href="#servicios">Servicios</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn--primary" href="/reservar.html" data-pendiente="true">Reservar mi lectura</a>
+    </aside>
+
+    <main id="top">
+      <!-- ==================== HERO ==================== -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__bg"></div>
+        <div class="container hero__grid">
+          <div class="reveal" style="--reveal-delay:60ms">
+            <span class="eyebrow">Lectura personalizada</span>
+            <h1 id="hero-title">
+              Alinéate con tu plan de vida, sana tus bloqueos y alcanza tus metas con <em>propósito.</em>
+            </h1>
+            <p class="hero__lead">
+              ¿Estás en búsqueda de respuestas relevantes para tu vida? Es posible que te cuestiones:
+            </p>
+            <ul class="hero__preguntas">
+              <li>¿Cómo se proyecta mi salud personal?</li>
+              <li>¿Dónde tengo mayor potencial para generar ingresos?</li>
+              <li>¿En qué carrera destaco más profesionalmente?</li>
+              <li>¿Me conviene continuar con esta relación?</li>
+              <li>¿Es mejor quedarme en el país o irme al exterior?</li>
+              <li>¿Qué aprendizajes kármicos debo afrontar?</li>
+              <li>¿Cuál es el momento adecuado para mudarme?</li>
+              <li>¿Tendré una familia e hijos?</li>
+            </ul>
+            <p class="hero__preguntas-cta">Las respuestas a todas estas dudas las encontrarás en tu lectura personalizada.</p>
+            <div class="hero__cta">
+              <a class="btn btn--primary btn--shimmer" href="/reservar.html" data-pendiente="true">
+                Reservar mi lectura
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+              <a class="btn btn--secondary" href="#servicios">Ver servicios</a>
+            </div>
+          </div>
+
+          <div class="hero__visual reveal" style="--reveal-delay:220ms">
+            <div class="hero__visual-inner hero__visual-inner--chart" data-hero-chart>
+              <!-- Fallback estático por si la carta animada no llega a inicializar -->
+              <img
+                src="/carta-astral-rueda.png"
+                alt="Carta astral rueda natal con signos del zodíaco, casas y aspectos planetarios"
+                width="520" height="520"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== METRICAS ==================== -->
+      <section class="metrics" aria-label="Métricas">
+        <div class="container metrics__grid">
+          <div class="reveal">
+            <div class="metric__value"><span data-ticker="7">7</span></div>
+            <div class="metric__label">Servicios disponibles</div>
+          </div>
+          <div class="reveal" style="--reveal-delay:80ms">
+            <div class="metric__value"><span data-ticker="200" data-suffix="+">200+</span></div>
+            <div class="metric__label">Lecturas realizadas</div>
+          </div>
+          <div class="reveal" style="--reveal-delay:160ms">
+            <div class="metric__value"><span data-ticker="100" data-suffix="%">100%</span></div>
+            <div class="metric__label">Clientes satisfechos</div>
+          </div>
+          <div class="reveal" style="--reveal-delay:240ms">
+            <div class="metric__value"><span data-ticker="12" data-suffix=" meses">12</span></div>
+            <div class="metric__label">De tránsitos incluidos</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SERVICIOS ==================== -->
+      <section class="servicios" id="servicios" aria-labelledby="servicios-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Servicios</span>
+            <h2 id="servicios-title">Elige la lectura que mejor se ajuste a lo que hoy necesitas comprender.</h2>
+            <p>
+              Cada servicio ha sido diseñado para ayudarte a comprender tu momento actual, reconocer tus talentos,
+              entender tus procesos y tomar decisiones con mayor claridad, conciencia y alineación.
+            </p>
+          </div>
+          <div class="servicios__grid" data-servicios></div>
+        </div>
+      </section>
+
+      <!-- ==================== TESTIMONIOS ==================== -->
+      <section class="testimonios" id="testimonios" aria-labelledby="testimonios-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Testimonios</span>
+            <h2 id="testimonios-title">Lecturas que han dejado claridad, dirección y una comprensión más profunda.</h2>
+          </div>
+        </div>
+        <div class="marquee" aria-label="Testimonios en carrusel">
+          <div class="marquee__track" data-testimonios></div>
+        </div>
+      </section>
+
+      <!-- ==================== FAQ ==================== -->
+      <section class="faq" id="faq" aria-labelledby="faq-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Preguntas frecuentes</span>
+            <h2 id="faq-title">Todo lo que quieres saber antes de reservar.</h2>
+          </div>
+          <div class="faq__wrap">
+            <div class="accordion" data-faq></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== CTA FINAL ==================== -->
+      <section class="cta-final-wrap" aria-labelledby="cta-title">
+        <div class="cta-final reveal">
+          <div class="starfield" aria-hidden="true"></div>
+          <div class="container">
+            <span class="eyebrow" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.18); color:#D6D2EC;">Tu próximo paso</span>
+            <h2 id="cta-title">Este puede ser el momento de entender con mayor profundidad lo que estás viviendo.</h2>
+            <p>
+              Si necesitas claridad sobre una relación, una decisión importante, un cambio de rumbo, una mudanza,
+              tu propósito personal o el momento actual, puedes reservar el servicio que mejor se ajuste a ti.
+            </p>
+            <p>Elige el servicio ideal para ti y da el siguiente paso con mayor claridad, dirección y confianza.</p>
+            <div class="cta-final__actions">
+              <a class="btn btn--primary btn--shimmer" href="/reservar.html" data-pendiente="true">
+                Reservar mi lectura
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div>
+            <div class="footer__brand">Mi Carta Astral Hoy</div>
+            <p>Lecturas astrológicas personalizadas, 100% digitales. Para tomar decisiones con mayor claridad.</p>
+          </div>
+          <div class="footer__col">
+            <h4>Explorar</h4>
+            <a href="#servicios">Servicios</a>
+            <a href="#testimonios">Testimonios</a>
+            <a href="#faq">FAQ</a>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <span>&copy; <span data-year></span> Mi Carta Astral Hoy. Todos los derechos reservados.</span>
+          <span>La astrología es una herramienta de orientación personal; no sustituye atención profesional.</span>
+          <span><a href="/politicas.html">Políticas</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

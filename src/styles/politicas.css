@@ -1,0 +1,132 @@
+/* Estilos de politicas.html */
+
+.politicas {
+  padding: var(--sp-6) 0 var(--sp-8);
+}
+
+.politicas__wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.politicas h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0 0 var(--sp-2);
+}
+
+.politicas__updated {
+  color: var(--text-secondary);
+  font-size: var(--fs-small);
+  margin: 0 0 var(--sp-5);
+}
+
+/* Table of contents */
+.politicas__toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-3);
+  margin-bottom: var(--sp-6);
+  padding: var(--sp-4);
+  background: var(--bg-alt);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+}
+
+.politicas__toc a {
+  color: var(--c-neptune);
+  font-weight: 500;
+  font-size: var(--fs-small);
+  text-decoration: none;
+}
+
+.politicas__toc a:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+/* Sections */
+.politicas__section {
+  margin-bottom: var(--sp-8);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border-soft);
+}
+
+.politicas__section h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin: 0 0 var(--sp-4);
+}
+
+.politicas__section h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin: var(--sp-5) 0 var(--sp-2);
+}
+
+.politicas__section p,
+.politicas__section li {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.politicas__section p {
+  margin: 0 0 var(--sp-3);
+}
+
+.politicas__section ul,
+.politicas__section ol {
+  margin: 0 0 var(--sp-3);
+  padding-left: 1.4rem;
+}
+
+.politicas__section li {
+  margin-bottom: var(--sp-2);
+}
+
+.politicas__section a {
+  color: var(--c-neptune);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.politicas__section a:hover {
+  color: var(--text-primary);
+}
+
+.politicas__section code {
+  font-size: 0.88em;
+  background: var(--bg-alt);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  color: var(--c-neptune);
+}
+
+/* Contact box */
+.politicas__contacto {
+  padding: var(--sp-4);
+  background: var(--bg-alt);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+  text-align: center;
+}
+
+.politicas__contacto p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.politicas__contacto a {
+  color: var(--c-neptune);
+  font-weight: 600;
+}

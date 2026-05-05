@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1A1730" />
+    <title>Reservar | Mi Carta Astral Hoy</title>
+    <meta name="description" content="Reserva tu lectura astrologica: elige servicios, completa tus datos de nacimiento y paga con Bold." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
+    <link rel="canonical" href="https://{{DOMINIO}}/reservar.html" />
+
+    <!-- Configuración runtime: reemplazar con los valores reales antes de publicar -->
+    <meta name="geonames-user" content="LP.MCAH1" />
+    <meta name="calendly-url" content="https://calendly.com/lp-mcah1/carta-astral" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" />
+
+    <meta name="wompi-public-key" content="pub_test_JTsdBdZG9Pfmd6J2ucVZXZohRssejGW3" />
+    <script type="module" src="/src/js/reservar-entry.js"></script>
+  </head>
+  <body class="reservar-page">
+    <header class="reservar__nav">
+      <div class="container reservar__nav-inner">
+        <a class="reservar__brand" href="/" aria-label="Volver al inicio">
+          <img src="/favicon.svg" alt="" width="28" height="28" aria-hidden="true" />
+          <span>Mi Carta Astral Hoy</span>
+        </a>
+        <a class="reservar__back" href="/">&larr; Volver</a>
+      </div>
+    </header>
+
+    <main class="reservar">
+      <div class="container reservar__grid">
+        <section class="reservar__intro reveal">
+          <h1>Completa tus datos y elige el servicio que deseas.</h1>
+        </section>
+
+        <form id="reservar-form" class="reservar__form" novalidate>
+          <!-- ============ PASO 1 · DATOS PERSONALES ============ -->
+          <section class="card reservar__step reveal" aria-labelledby="paso-personales">
+            <header class="reservar__step-head">
+              <span class="reservar__step-num">1</span>
+              <div>
+                <h2 id="paso-personales">Tus datos de contacto</h2>
+              </div>
+            </header>
+
+            <div class="field">
+              <label for="nombre">Nombre completo <span aria-hidden="true">*</span></label>
+              <input id="nombre" name="nombre" type="text" autocomplete="name" required />
+              <span class="field__error" data-error-for="nombre"></span>
+            </div>
+
+            <div class="field">
+              <label for="email">Correo electrónico <span aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+              <span class="field__error" data-error-for="email"></span>
+            </div>
+
+            <div class="field">
+              <label for="whatsapp">WhatsApp / celular (con código país) <span aria-hidden="true">*</span></label>
+              <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="+57 300 123 4567" required />
+              <span class="field__error" data-error-for="whatsapp"></span>
+            </div>
+
+          </section>
+
+          <!-- ============ PASO 2 · DATOS DE NACIMIENTO ============ -->
+          <section class="card reservar__step reveal" aria-labelledby="paso-nacimiento">
+            <header class="reservar__step-head">
+              <span class="reservar__step-num">2</span>
+              <div>
+                <h2 id="paso-nacimiento">Tus datos de nacimiento</h2>
+              </div>
+            </header>
+
+            <div data-persona="principal">
+              <fieldset class="fieldset">
+                <legend>Fecha de nacimiento</legend>
+                <div class="field-row">
+                  <div class="field">
+                    <label for="mes">Mes</label>
+                    <select id="mes" name="mes" required data-nac="mes"></select>
+                  </div>
+                  <div class="field">
+                    <label for="dia">Día</label>
+                    <select id="dia" name="dia" required data-nac="dia"></select>
+                  </div>
+                  <div class="field">
+                    <label for="anio">Año</label>
+                    <select id="anio" name="anio" required data-nac="anio"></select>
+                  </div>
+                </div>
+                <span class="field__error" data-error-for="fecha_nac"></span>
+              </fieldset>
+
+              <fieldset class="fieldset">
+                <legend>Hora exacta de nacimiento</legend>
+                <div class="field-row">
+                  <div class="field">
+                    <label for="hora">Hora</label>
+                    <select id="hora" name="hora" required data-nac="hora"></select>
+                  </div>
+                  <div class="field">
+                    <label for="minuto">Minuto</label>
+                    <select id="minuto" name="minuto" required data-nac="minuto"></select>
+                  </div>
+                </div>
+                <span class="field__error" data-error-for="hora_nac"></span>
+                <p class="reservar__hint">
+                  Si no conoces tu hora, podemos ayudarte a ajustarla con el servicio de <strong>Corrección Horaria</strong> (selecciónalo abajo).
+                </p>
+              </fieldset>
+
+              <fieldset class="fieldset fieldset--lugar">
+                <div class="field field--autocomplete">
+                  <label for="ciudad">Ciudad de nacimiento <span aria-hidden="true">*</span></label>
+                  <div class="autocomplete-wrap">
+                    <input
+                      id="ciudad"
+                      name="ciudad"
+                      type="text"
+                      autocomplete="off"
+                      placeholder="Ej: Bogotá, Colombia"
+                      required
+                      data-nac="ciudad"
+                      aria-describedby="ciudad-hint"
+                      aria-autocomplete="list"
+                      aria-controls="ciudad-listbox"
+                      aria-expanded="false"
+                    />
+                    <ul id="ciudad-listbox" class="autocomplete-list" role="listbox" hidden></ul>
+                  </div>
+                  <small id="ciudad-hint" class="reservar__hint">Empieza a escribir y elige tu ciudad de la lista.</small>
+                  <span class="field__error" data-error-for="ciudad"></span>
+                </div>
+
+                <input type="hidden" name="lat_decimal" data-nac="lat" />
+                <input type="hidden" name="long_decimal" data-nac="lng" />
+                <input type="hidden" name="geo_timezone_id" data-nac="tz" />
+                <input type="hidden" name="utc_offset" data-nac="utc_offset" />
+              </fieldset>
+            </div>
+
+            <!-- Segunda persona: solo visible cuando se elige Sinastría -->
+            <div data-persona="pareja" hidden>
+              <h3 class="reservar__persona-title">Segunda persona (sinastría) <span aria-hidden="true">*</span></h3>
+              <div class="field">
+                <label for="nombre_pareja">Nombre de la segunda persona <span aria-hidden="true">*</span></label>
+                <input id="nombre_pareja" name="nombre_pareja" type="text" required />
+                <span class="field__error" data-error-for="nombre_pareja"></span>
+              </div>
+              <fieldset class="fieldset">
+                <legend>Fecha de nacimiento</legend>
+                <div class="field-row">
+                  <div class="field">
+                    <label for="mes_p">Mes</label>
+                    <select id="mes_p" name="mes_p" data-nac2="mes"></select>
+                  </div>
+                  <div class="field">
+                    <label for="dia_p">Día</label>
+                    <select id="dia_p" name="dia_p" data-nac2="dia"></select>
+                  </div>
+                  <div class="field">
+                    <label for="anio_p">Año</label>
+                    <select id="anio_p" name="anio_p" data-nac2="anio"></select>
+                  </div>
+                </div>
+                <span class="field__error" data-error-for="fecha_nac_p"></span>
+              </fieldset>
+              <fieldset class="fieldset">
+                <legend>Hora de nacimiento</legend>
+                <div class="field-row">
+                  <div class="field">
+                    <label for="hora_p">Hora</label>
+                    <select id="hora_p" name="hora_p" data-nac2="hora"></select>
+                  </div>
+                  <div class="field">
+                    <label for="minuto_p">Minuto</label>
+                    <select id="minuto_p" name="minuto_p" data-nac2="minuto"></select>
+                  </div>
+                </div>
+                <span class="field__error" data-error-for="hora_nac_p"></span>
+              </fieldset>
+              <fieldset class="fieldset fieldset--lugar">
+                <div class="field field--autocomplete">
+                  <label for="ciudad_p">Ciudad <span aria-hidden="true">*</span></label>
+                  <div class="autocomplete-wrap">
+                    <input id="ciudad_p" name="ciudad_p" type="text" autocomplete="off" data-nac2="ciudad" aria-autocomplete="list" aria-controls="ciudad_p-listbox" aria-expanded="false" />
+                    <ul id="ciudad_p-listbox" class="autocomplete-list" role="listbox" hidden></ul>
+                  </div>
+                  <span class="field__error" data-error-for="ciudad_p"></span>
+                </div>
+                <input type="hidden" name="lat_decimal_p" data-nac2="lat" />
+                <input type="hidden" name="long_decimal_p" data-nac2="lng" />
+                <input type="hidden" name="geo_timezone_id_p" data-nac2="tz" />
+                <input type="hidden" name="utc_offset_p" data-nac2="utc_offset" />
+              </fieldset>
+            </div>
+          </section>
+
+          <!-- ============ PASO 3 · SERVICIOS ============ -->
+          <section class="card reservar__step reveal" aria-labelledby="paso-servicios">
+            <header class="reservar__step-head">
+              <span class="reservar__step-num">3</span>
+              <div>
+                <h2 id="paso-servicios">Elige tus servicios</h2>
+              </div>
+            </header>
+
+            <h3 class="reservar__grupo">Servicios principales <small>(elige uno)</small></h3>
+            <div class="servicios-grid" data-servicios-principales></div>
+
+            <h3 class="reservar__grupo">Complementos <small>(opcional, con descuento)</small></h3>
+            <div class="servicios-grid servicios-grid--addons" data-servicios-addons></div>
+
+            <p class="reservar__descuento-aviso">
+              Obtén un 10% de descuento al reservar el servicio de <strong>"Corrección Horaria"</strong>, si lo requieres, y un 10% adicional al seleccionar el servicio de <strong>"Cartografía Astral"</strong>, para cualquiera de nuestros cinco servicios principales.
+            </p>
+
+            <span class="field__error field__error--block" data-error-for="seleccion"></span>
+          </section>
+
+          <!-- ============ PASO 4 · RESUMEN Y PAGO ============ -->
+          <section class="card reservar__step reservar__pago reveal" aria-labelledby="paso-pago">
+            <header class="reservar__step-head">
+              <span class="reservar__step-num">4</span>
+              <div>
+                <h2 id="paso-pago">Resumen y pago</h2>
+              </div>
+            </header>
+
+            <ul class="resumen" data-resumen>
+              <li class="resumen__vacio">Aún no has seleccionado servicios.</li>
+            </ul>
+
+            <dl class="resumen__totales">
+              <div><dt>Subtotal</dt><dd data-total="subtotal">$0</dd></div>
+              <div data-total-row="descuento" hidden><dt>Descuento <span data-total="descuento-pct"></span></dt><dd data-total="descuento">-$0</dd></div>
+              <div class="resumen__total"><dt>Total</dt><dd data-total="total">$0</dd></div>
+            </dl>
+
+            <button type="submit" class="btn btn--primary btn--shimmer reservar__submit" data-submit disabled>
+              Pagar
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </section>
+
+        </form>
+      </div>
+    </main>
+
+    <!-- Sticky summary en mobile -->
+    <div class="sticky-total" data-sticky-total hidden>
+      <div>
+        <span class="sticky-total__label">Total</span>
+        <span class="sticky-total__value" data-total="total-mobile">$0</span>
+      </div>
+      <button type="button" class="btn btn--primary" data-scroll-pago>Continuar</button>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__bottom">
+          <span>&copy; <span data-year></span> Mi Carta Astral Hoy.</span>
+          <span><a href="/">Inicio</a> · <a href="/politicas.html">Políticas</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
