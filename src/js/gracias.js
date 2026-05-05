@@ -108,7 +108,7 @@ function pintarServicios(data) {
   const fmt = (n) =>
     new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'COP',
+      currency: 'USD',
       maximumFractionDigits: 0,
     }).format(n || 0);
 
