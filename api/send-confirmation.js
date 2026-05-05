@@ -21,9 +21,9 @@ function esc(s = '') {
   })[c]);
 }
 
-function fmtUSD(n) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency', currency: 'USD', maximumFractionDigits: 0,
+function fmtCOP(n) {
+  return new Intl.NumberFormat('es-CO', {
+    style: 'currency', currency: 'COP', maximumFractionDigits: 0,
   }).format(n || 0);
 }
 
@@ -54,7 +54,7 @@ function renderClienteHtml(data, calendlyUrl) {
   ].filter(Boolean).join('');
 
   const descuentoLinea = totales?.descuento
-    ? `<tr><td style="color:#5C5780;">Descuento</td><td align="right">-${fmtUSD(totales.descuento)}</td></tr>`
+    ? `<tr><td style="color:#5C5780;">Descuento</td><td align="right">-${fmtCOP(totales.descuento)}</td></tr>`
     : '';
 
   const bloqueCalendly = mostrarCalendly ? `
@@ -88,10 +88,10 @@ function renderClienteHtml(data, calendlyUrl) {
     <ul style="margin:0 0 18px;padding-left:20px;line-height:1.7;">${itemsLista}</ul>
 
     <table style="width:100%;border-collapse:collapse;margin:18px 0;font-size:0.95rem;">
-      <tr><td style="color:#5C5780;">Subtotal</td><td align="right">${fmtUSD(totales?.subtotal)}</td></tr>
+      <tr><td style="color:#5C5780;">Subtotal</td><td align="right">${fmtCOP(totales?.subtotal)}</td></tr>
       ${descuentoLinea}
       <tr><td style="padding-top:8px;border-top:1px solid #D6D2EC;font-weight:600;">Total pagado</td>
-          <td align="right" style="padding-top:8px;border-top:1px solid #D6D2EC;font-weight:600;font-family:Fraunces,Georgia,serif;font-size:1.2rem;color:#2D8C5E;">${fmtUSD(totales?.total)}</td></tr>
+          <td align="right" style="padding-top:8px;border-top:1px solid #D6D2EC;font-weight:600;font-family:Fraunces,Georgia,serif;font-size:1.2rem;color:#2D8C5E;">${fmtCOP(totales?.total)}</td></tr>
     </table>
 
     ${bloqueCalendly}
@@ -150,7 +150,7 @@ function renderAdminHtml(data) {
   }
 
   const descuentoLinea = totales?.descuento
-    ? `<tr><td style="padding:4px 0;color:#5C5780;">Descuento</td><td align="right">-${fmtUSD(totales.descuento)} (${Math.round((totales.pct || 0) * 100)}%)</td></tr>`
+    ? `<tr><td style="padding:4px 0;color:#5C5780;">Descuento</td><td align="right">-${fmtCOP(totales.descuento)} (${Math.round((totales.pct || 0) * 100)}%)</td></tr>`
     : '';
 
   const ahora = new Date().toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
@@ -187,10 +187,10 @@ function renderAdminHtml(data) {
     <ul style="margin:0 0 14px;padding-left:20px;font-size:0.92rem;line-height:1.6;">${addonsHtml}</ul>
 
     <table style="width:100%;border-collapse:collapse;font-size:0.95rem;margin-top:8px;">
-      <tr><td style="padding:4px 0;color:#5C5780;">Subtotal</td><td align="right">${fmtUSD(totales?.subtotal)}</td></tr>
+      <tr><td style="padding:4px 0;color:#5C5780;">Subtotal</td><td align="right">${fmtCOP(totales?.subtotal)}</td></tr>
       ${descuentoLinea}
       <tr><td style="padding:8px 0;border-top:1px solid #D6D2EC;font-weight:600;">Total cobrado</td>
-          <td align="right" style="padding:8px 0;border-top:1px solid #D6D2EC;font-weight:600;font-family:Fraunces,Georgia,serif;font-size:1.15rem;color:#2D8C5E;">${fmtUSD(totales?.total)}</td></tr>
+          <td align="right" style="padding:8px 0;border-top:1px solid #D6D2EC;font-weight:600;font-family:Fraunces,Georgia,serif;font-size:1.15rem;color:#2D8C5E;">${fmtCOP(totales?.total)}</td></tr>
     </table>
 
     <p style="color:#5C5780;font-size:0.78rem;margin-top:24px;border-top:1px solid #EFEAF8;padding-top:14px;">
@@ -237,7 +237,7 @@ export default async function handler(req, res) {
   }
 
   const resend = new Resend(apiKey);
-  const totalUsd = data.totales?.total ?? '';
+  const totalCop = data.totales?.total ?? '';
 
   try {
     const [clienteRes, adminRes] = await Promise.allSettled([
@@ -251,7 +251,7 @@ export default async function handler(req, res) {
         from,
         to: [adminTo],
         replyTo: data.email,
-        subject: `Nueva reserva · ${data.orden || ''} · ${data.nombre || ''} · ${fmtUSD(totalUsd)}`,
+        subject: `Nueva reserva · ${data.orden || ''} · ${data.nombre || ''} · ${fmtCOP(totalCop)}`,
         html: renderAdminHtml(data),
       }),
     ]);
