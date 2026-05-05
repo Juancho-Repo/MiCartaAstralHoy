@@ -46,13 +46,7 @@ async function abrirWompi(payload) {
     sessionStorage.setItem('reservaPendiente', JSON.stringify(payload));
   } catch {}
 
-  // 3. Confirmar al usuario el monto en COP
-  const fmtCOP = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(totalCOP);
-  const fmtTRM = new Intl.NumberFormat('es-CO', { maximumFractionDigits: 2 }).format(trm);
-  const ok = confirm(`Total: $${totalUSD} USD ≈ ${fmtCOP} COP\nTRM del día: $${fmtTRM}\n\n¿Deseas continuar con el pago?`);
-  if (!ok) return;
-
-  // 4. Pedir firma de integridad al backend
+  // 3. Pedir firma de integridad al backend
   let signature;
   try {
     const sigResp = await fetch('/api/wompi-signature', {
