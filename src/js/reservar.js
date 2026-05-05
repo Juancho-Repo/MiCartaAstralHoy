@@ -39,36 +39,23 @@ async function abrirWompi(payload) {
     return;
   }
 
-  // Crear formulario y script del widget
-  const host = document.createElement('form');
-  host.style.display = 'none';
-  document.body.appendChild(host);
-
-  const script = document.createElement('script');
-  script.src = 'https://checkout.wompi.co/widget.js';
-  script.setAttribute('data-render', 'button');
-  script.setAttribute('data-public-key', publicKey);
-  script.setAttribute('data-currency', currency);
-  script.setAttribute('data-amount-in-cents', String(amountInCents));
-  script.setAttribute('data-reference', reference);
-  script.setAttribute('data-signature:integrity', signature);
-  script.setAttribute('data-redirect-url', `${window.location.origin}${THANKS_PATH}`);
-  if (payload.email) script.setAttribute('data-customer-data:email', payload.email);
-  if (payload.nombre) script.setAttribute('data-customer-data:full-name', payload.nombre);
+  // Redirección al Web Checkout de Wompi (más confiable que el widget dinámico)
+  const redirectUrl = encodeURIComponent(`${window.location.origin}${THANKS_PATH}`);
+  const params = new URLSearchParams({
+    'public-key': publicKey,
+    currency: currency,
+    'amount-in-cents': String(amountInCents),
+    reference: reference,
+    'signature:integrity': signature,
+    'redirect-url': `${window.location.origin}${THANKS_PATH}`,
+  });
+  if (payload.email) params.set('customer-data:email', payload.email);
+  if (payload.nombre) params.set('customer-data:full-name', payload.nombre);
   if (payload.whatsapp) {
-    script.setAttribute('data-customer-data:phone-number', String(payload.whatsapp).replace(/\D/g, ''));
+    params.set('customer-data:phone-number', String(payload.whatsapp).replace(/\D/g, ''));
   }
-  host.appendChild(script);
 
-  // El widget reemplaza el script por un botón. Disparar click cuando esté listo.
-  let intentos = 0;
-  const tryClick = () => {
-    const btn = host.querySelector('button');
-    if (btn) { btn.click(); return; }
-    if (intentos++ < 20) setTimeout(tryClick, 200);
-    else alert('No se pudo cargar la pasarela. Recarga la página.');
-  };
-  tryClick();
+  window.location.href = `https://checkout.wompi.co/p/?${params.toString()}`;
 }
 
 function getGeonamesUser() {
