@@ -240,11 +240,13 @@ export default async function handler(req, res) {
   const totalUsd = data.totales?.total ?? '';
 
   try {
+    // Ambos correos van a adminTo (cuenta Resend gratuita solo envía al dueño).
+    // El email de confirmación del cliente se envía al admin para reenvío manual.
     const [clienteRes, adminRes] = await Promise.allSettled([
       resend.emails.send({
         from,
-        to: [data.email],
-        subject: `Reserva confirmada · ${data.orden || 'Mi Carta Astral Hoy'}`,
+        to: [adminTo],
+        subject: `[Reenviar a ${data.email}] Reserva confirmada · ${data.orden || 'Mi Carta Astral Hoy'}`,
         html: renderClienteHtml(data, calendlyUrl),
       }),
       resend.emails.send({
@@ -259,10 +261,10 @@ export default async function handler(req, res) {
     const clienteOk = clienteRes.status === 'fulfilled';
     const adminOk = adminRes.status === 'fulfilled';
 
-    res.statusCode = clienteOk ? 200 : 502;
+    res.statusCode = (clienteOk || adminOk) ? 200 : 502;
     res.setHeader('Content-Type', 'application/json');
     return res.end(JSON.stringify({
-      ok: clienteOk,
+      ok: clienteOk || adminOk,
       cliente: clienteOk,
       admin: adminOk,
       detail: {
