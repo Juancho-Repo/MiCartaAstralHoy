@@ -29,12 +29,12 @@ export async function initGracias() {
   pintarEncabezado(data, payment);
   pintarEstadoInicial(payment);
 
-  if (!payment.approved) return;
-
-  // Si tiene consulta, mostrar Calendly
+  // Si tiene consulta, mostrar Calendly siempre (no depende del status)
   if (CON_CITA.includes(data.servicios?.principal)) {
     pintarCalendly(data);
   }
+
+  if (!payment.approved) return;
 
   // Enviar correos una sola vez
   enviarCorreosUnaVez(raw, data);
